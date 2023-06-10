@@ -25,7 +25,7 @@ describe("testing the home page", () => {
       });
   });
 
-  it("verifies whether a card marked as favourite is shown as such on home, is shown in favourites and then removed when marked as not a favourite", () => {
+  it("verifies whether a card marked as favourite is shown as such on home and is shown in favourites ", () => {
     cy.get('[data-cy="RepoCard"]').first().find("button").click();
     cy.get('[data-cy="RepoCard"]')
       .first()
