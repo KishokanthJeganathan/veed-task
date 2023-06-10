@@ -12,7 +12,7 @@ export type RepoCardData = {
 
 export type RepoCardProps = RepoCardData & {
   isFavourite: boolean;
-  setValue: (data: SetValueData<RepoCardData>) => void;
+  setValue?: (data: SetValueData<RepoCardData>) => void;
 };
 
 const RepoCard = ({
@@ -37,7 +37,7 @@ const RepoCard = ({
     });
 
   return (
-    <RepoCardCover data-cy="RepoCard">
+    <RepoCardCover>
       <h3>Name: {name}</h3>
       <p>Stars: {numOfstars}</p>
       <p>Forks: {numOfForks}</p>

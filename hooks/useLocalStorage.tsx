@@ -8,6 +8,7 @@ export type SetValueData<T> = {
 };
 
 const useLocalStorage = <T, K>(keyName: string, defaultValue: K) => {
+  const [storedData, setStoredData] = useState<T[]>([]);
   const readValue = useCallback(() => {
     if (typeof window === "undefined") {
       return defaultValue;
@@ -21,7 +22,11 @@ const useLocalStorage = <T, K>(keyName: string, defaultValue: K) => {
     }
   }, [keyName, defaultValue]);
 
-  const [storedData, setStoredData] = useState<T[]>(readValue());
+  useEffect(() => {
+    setStoredData(readValue());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const setValue = ({ data, action }: SetValueData<T>): void => {
     try {
       const newData = action === "Add" ? [...storedData, data] : storedData;
@@ -32,11 +37,6 @@ const useLocalStorage = <T, K>(keyName: string, defaultValue: K) => {
       throw new Error();
     }
   };
-
-  useEffect(() => {
-    setStoredData(readValue());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return {
     storedData,
