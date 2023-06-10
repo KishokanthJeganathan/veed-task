@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Item } from "../../types";
-import RepoCard from "../RepoCard/RepoCard";
+import RepoCard, { RepoCardData } from "../RepoCard/RepoCard";
 import { RepoCardsCover } from "./styles";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const RepoCards = ({ repoCards }: { repoCards: Item[] }) => {
+  const { storedData, setValue } = useLocalStorage<RepoCardData, []>(
+    "RepoData",
+    []
+  );
+
+  const favouritesArray = useMemo(
+    () =>
+      repoCards?.filter(({ name: repoCardName }) =>
+        storedData.some(({ name }) => name === repoCardName)
+      ),
+    [repoCards, storedData]
+  );
   return (
     <RepoCardsCover>
       {repoCards.map(
@@ -21,6 +34,12 @@ const RepoCards = ({ repoCards }: { repoCards: Item[] }) => {
             link={link}
             language={language}
             key={name}
+            setValue={setValue}
+            isFavourite={
+              favouritesArray.find(({ html_url }) => html_url === link)
+                ? true
+                : false
+            }
           />
         )
       )}

@@ -1,5 +1,6 @@
 import React from "react";
 import { RepoCardCover } from "./styles";
+import { SetValueData } from "../../hooks/useLocalStorage";
 
 export type RepoCardData = {
   numOfstars: number;
@@ -8,13 +9,33 @@ export type RepoCardData = {
   link: string;
   language: string | null;
 };
+
+export type RepoCardProps = RepoCardData & {
+  isFavourite: boolean;
+  setValue: (data: SetValueData<RepoCardData>) => void;
+};
+
 const RepoCard = ({
   numOfstars,
   name,
   numOfForks,
   link,
   language,
-}: RepoCardData) => {
+  setValue,
+  isFavourite,
+}: RepoCardProps) => {
+  const handleButtonClick = () =>
+    setValue({
+      data: {
+        numOfstars,
+        name,
+        numOfForks,
+        link,
+        language,
+      },
+      action: "Add",
+    });
+
   return (
     <RepoCardCover data-cy="RepoCard">
       <h3>Name: {name}</h3>
@@ -24,6 +45,9 @@ const RepoCard = ({
       <a href={link} target="_blank" rel="noopener">
         Visit Repo
       </a>
+      <button onClick={handleButtonClick} disabled={isFavourite ? true : false}>
+        {!isFavourite ? "Favourite" : "Added to Favourites"}
+      </button>
     </RepoCardCover>
   );
 };
