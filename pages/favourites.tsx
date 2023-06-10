@@ -1,13 +1,30 @@
 import React from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { RepoCardData } from "../components/RepoCard/RepoCard";
 import FavouriteCards from "../components/Favourites/FavouriteCards";
+import NavBar from "../components/NavBar/NavBar";
+import useLanguageFilter from "../hooks/useLanguageFilter";
+import { RepoCardData } from "../components/RepoCard/RepoCard";
 
 const Favourites = () => {
   const { storedData } = useLocalStorage<RepoCardData, []>("RepoData", []);
+  const {
+    repoData,
+    allLanguageFilters,
+    appliedLanguageFilter,
+    setAppliedLanguageFilter,
+  } = useLanguageFilter(storedData);
 
   return (
-    <>{storedData ? <FavouriteCards favouriteCardData={storedData} /> : null}</>
+    <>
+      <NavBar
+        allLanguageFilters={allLanguageFilters}
+        appliedLanguageFilter={appliedLanguageFilter}
+        setAppliedLanguageFilter={setAppliedLanguageFilter}
+        href="/"
+        destination="Click here to go to the home page"
+      />
+      {repoData ? <FavouriteCards favouriteCardData={repoData} /> : null}
+    </>
   );
 };
 
