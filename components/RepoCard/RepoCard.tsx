@@ -24,20 +24,22 @@ const RepoCard = ({
   setValue,
   isFavourite,
 }: RepoCardProps) => {
-  const handleButtonClick = () =>
-    setValue({
-      data: {
-        numOfstars,
-        name,
-        numOfForks,
-        link,
-        language,
-      },
-      action: "Add",
-    });
-
+  const handleButtonClick = () => {
+    if (setValue) {
+      setValue({
+        data: {
+          numOfstars,
+          name,
+          numOfForks,
+          link,
+          language,
+        },
+        action: "Add",
+      });
+    }
+  };
   return (
-    <RepoCardCover>
+    <RepoCardCover data-cy="RepoCard">
       <h3>Name: {name}</h3>
       <p>Stars: {numOfstars}</p>
       <p>Forks: {numOfForks}</p>

@@ -17,6 +17,7 @@ const FilterBar = ({
     <FilterButtonsCover>
       {allLanguageFilters.map((filter) => (
         <button
+          data-cy="filterButton"
           key={filter}
           onClick={() => setAppliedLanguageFilter(filter)}
           aria-label={`Filter by ${filter}`}

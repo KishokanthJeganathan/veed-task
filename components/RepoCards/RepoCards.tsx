@@ -33,7 +33,7 @@ const RepoCards = ({ repoCards }: { repoCards: Item[] }) => {
             numOfForks={numOfForks}
             link={link}
             language={language}
-            key={name}
+            key={link}
             setValue={setValue}
             isFavourite={
               favouritesArray.find(({ html_url }) => html_url === link)
