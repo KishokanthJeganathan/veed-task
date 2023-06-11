@@ -1,6 +1,6 @@
 # Important info
 
-Deployed app with the extra langaguage filter -
+Deployed app with the extra langaguage filter - https://veed-task.vercel.app/
 
 This task a little close to 4 hours and I stopped working after this mark as instructed. Due to these time restrictions, I have a bit of leftover tasks that I must highlight
 
