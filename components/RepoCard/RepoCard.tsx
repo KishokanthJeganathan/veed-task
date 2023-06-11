@@ -1,13 +1,14 @@
 import React from "react";
 import { RepoCardCover } from "./styles";
 import { SetValueData } from "../../hooks/useLocalStorage";
+import { Nullable } from "../../types";
 
 export type RepoCardData = {
   numOfstars: number;
   name: string;
   numOfForks: number;
   link: string;
-  language: string | null;
+  language: Nullable<string>;
 };
 
 export type RepoCardProps = RepoCardData & {

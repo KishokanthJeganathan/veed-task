@@ -2,11 +2,12 @@ import React from "react";
 import Link from "next/link";
 import { NavBarCover } from "./styles";
 import FilterBar from "../FilterBar/FilterBar";
+import { Nullable } from "../../types";
 
 interface NavBarProps {
-  allLanguageFilters: (string | null)[];
-  appliedLanguageFilter: string | null;
-  setAppliedLanguageFilter: (language: string | null) => void;
+  allLanguageFilters: Nullable<string>[];
+  appliedLanguageFilter: Nullable<string>;
+  setAppliedLanguageFilter: (language: Nullable<string>) => void;
   href: string;
   destination: string;
 }

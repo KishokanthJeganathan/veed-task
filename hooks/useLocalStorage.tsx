@@ -34,7 +34,12 @@ const useLocalStorage = <T, K>(keyName: string, defaultValue: K) => {
       window.localStorage.setItem(keyName, JSON.stringify(newData));
       setStoredData(newData);
     } catch (error) {
-      throw new Error();
+      throw new Error(
+        `Value was not set as expected in setValue when recieving ${{
+          data,
+          action,
+        }}`
+      );
     }
   };
 

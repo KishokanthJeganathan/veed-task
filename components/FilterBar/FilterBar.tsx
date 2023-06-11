@@ -1,11 +1,12 @@
 import React from "react";
 import { FilterButtonsCover } from "./styles";
 import { CLEAR_FILTERS } from "../../hooks/useLanguageFilter";
+import { Nullable } from "../../types";
 
 export interface FilterBarProps {
-  allLanguageFilters: (string | null)[];
-  appliedLanguageFilter: string | null;
-  setAppliedLanguageFilter: (language: string | null) => void;
+  allLanguageFilters: Nullable<string>[];
+  appliedLanguageFilter: Nullable<string>;
+  setAppliedLanguageFilter: (language: Nullable<string>) => void;
 }
 
 const FilterBar = ({
